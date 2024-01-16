@@ -210,8 +210,6 @@ body * {
 	top: 0px;
 	width: 35px;
 	height: 15px;
-	/*background-color: rgba(1,255,255,0.5);*/
-
 	background-repeat: no-repeat;
 	background-position: center;
 }
@@ -251,11 +249,6 @@ body * {
 	-ms-overflow-style: none;
 	scrollbar-width: none;
 }
-
-/* #terms_text {
-    font-size: 10px;
-    line-height: 12px;
-  } */
 
 #text_wrapper::-webkit-scrollbar,
 #terms_text::-webkit-scrollbar {

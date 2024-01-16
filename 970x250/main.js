@@ -11,7 +11,7 @@ function checkIfAdKitReady(event) {
 function init() {
   setupDom()
   addListeners()
-  show()
+  animate()
 }
 
 /* DOM REFERENCES
@@ -22,7 +22,6 @@ function setupDom() {
 }
 
 function addListeners() {
-    
     document.getElementById("up").addEventListener('click', clickUp);
     document.getElementById("up").addEventListener('mouseover', rolloverUp);
     document.getElementById("up").addEventListener('mouseout', rolloutUp);
@@ -43,20 +42,17 @@ function addListeners() {
 }
 
 function bgExit(){
-    //console.log("bgExit");
     adkit.clickthrough();
 }
 
 function revealTerms() {
-  //event.stopPropagation();
   gsap.to([".text2", "#info", ".anim_container", ".anim", "#t1", ".hide"],0.3,  {autoAlpha:0});
   gsap.to(["#terms", "#cta"], 0.6, { y: 0, ease:"power4.inOut", delay:0.3, autoAlpha: 1 });
   gsap.to("#terms_text", .2, { y: 0 });
   gsap.to("#cta", 0.6, {opacity: 0, display: "none"}, 0.3, );
 }
 
-function hideTerms() {
-  //event.stopPropagation();    
+function hideTerms() {  
     gsap.to(["#terms"], 0.6, { y: 30, autoAlpha: 0, ease:"power4.inOut"});
     gsap.to([".text2", "#info", ".hide" ],0.3, {autoAlpha:1, delay: 0.6});
     gsap.to("#cta", .2, {y: 0, opacity: 1, display: "block", ease: "power4.inOut", delay: 0.3,autoAlpha: 1});
@@ -72,7 +68,6 @@ function default_out(event) {
 
 function rolloverUp(ev) {
   ev.preventDefault();
-  //gsap.set("#up", { y: -5 });
   gsap.set("#up", {backgroundPositionY:"top"});
   scrollInterval = setInterval(scrollUp, 500);
   console.log("upbtn roll over");
@@ -80,7 +75,6 @@ function rolloverUp(ev) {
 
 function rolloutUp(ev) {
   ev.preventDefault();
-  //gsap.set("#up", { y: 0 });
   gsap.set("#up", {backgroundPositionY:"center"});
   clearInterval(scrollInterval);
   console.log("upbtn roll out");
@@ -90,7 +84,6 @@ function clickUp() {}
 
 function rolloverDown(ev) {
   ev.preventDefault();
-  //gsap.set("#down", { y: 5 });
  gsap.set("#down", {backgroundPositionY:"bottom"});
   scrollInterval = setInterval(scrollDown, 500);
   console.log("Downbtn roll over");
@@ -98,7 +91,6 @@ function rolloverDown(ev) {
 
 function rolloutDown(ev) {
   ev.preventDefault();
-  //gsap.set("#down", { y: 0 });
     gsap.set("#down", {backgroundPositionY:"center"});
   clearInterval(scrollInterval);
 
@@ -136,41 +128,25 @@ function slowDown() {
   });
 }
 
-
-/* SHOW AD
-************************************************** */
-function show() {
-  animate()
-}
-
 /* ANIMATE AD
 ************************************************** */
 function animate() {
-
-    
-    gsap.set("#terms", {y:"+=30px", autoAlpha: 0, ease: Power2.easeIn});
-    gsap.set(" #t2, #cta, #anim", {autoAlpha:0});
+  gsap.set("#terms", {y:"+=30px", autoAlpha: 0, ease: Power2.easeIn});
+  gsap.set(" #t2, #cta, #anim", {autoAlpha:0});
 
     
 termsHolderHeight = document.getElementById("text_wrapper").offsetHeight;
   termsHeight = document.getElementById("terms_text").offsetHeight;
   termsCurrentPosition = document.getElementById("terms_text").offsetTop;
   termsMaxYPosition = termsHeight - termsHolderHeight;
-
     
-    gsap.to("#main-container" , 0, {autoAlpha:1});
-    
-    //gsap.set(".gradbg", {scale:0.3, x:"-=650px", y:"-=600px"});
-
-    //gsap.set(".imgholder", {transformOrigin:"0% 0%"});
- 
-    
-   var mainTL = gsap.timeline();
+  gsap.to("#main-container" , 0, {autoAlpha:1});
+  var mainTL = gsap.timeline();
     mainTL.addLabel("frame1", 0.0) 
     .addLabel("frame2", 4.5)  
     .addLabel("frame3", 10)  
-   .addLabel("frame4", 11) 
-   .addLabel("explosion", "frame1+=3.7")
+    .addLabel("frame4", 11) 
+    .addLabel("explosion", "frame1+=3.7")
     
  
     .from([".t1word", "#main","#main_drop"], {duration:1, autoAlpha:0}, "frame1")
@@ -180,38 +156,11 @@ termsHolderHeight = document.getElementById("text_wrapper").offsetHeight;
     .to("#plane", {autoAlpha: 1}, "-=4")
     .to("#plane", 4, {y: 0, x: 0, ease: Power2.easeOut, autoAlpha: 1}, "-=3")
     .to("#plane", 2, {rotation: 0, ease: Power2.easeIn}, "-=2.5")
-
-
-
     .to(["#main", "#main_drop", "#t1", "#anim"], {duration:0.3, autoAlpha:0}, "8")
 
     .to(["#t2"], {duration:0.3, autoAlpha:1}, "8")
-    .to(["#cta"], {duration:0.3, autoAlpha:1}, "8.5")
-
-  // .add(revealTerms, "frame3")
-
-
-  // .add(hideTerms, "frame4")
-
-  
-    
-    
-    
-    
-;
-    
-      // console.log(mainTL.labels["frame2"])
-
-    //mainTL.seek("frame3+=0.5");
-    //mainTL.seek("frame3");
-    //mainTL.pause();
-    
-    //ease:"back.out(2)"
-
+    .to(["#cta"], {duration:0.3, autoAlpha:1}, "8.5");
 }
-
-// }
-
 /* WINDOW LOAD
 ************************************************** */
 gsap.defaults({ease:"none"});

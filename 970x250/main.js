@@ -56,9 +56,7 @@ function revealTerms() {
 }
 
 function hideTerms() {
-  //event.stopPropagation();
-  
-    
+  //event.stopPropagation();    
     gsap.to(["#terms"], 0.6, { y: 30, autoAlpha: 0, ease:"power4.inOut"});
     gsap.to([".text2", "#info", ".hide" ],0.3, {autoAlpha:1, delay: 0.6});
     gsap.to("#cta", .2, {y: 0, opacity: 1, display: "block", ease: "power4.inOut", delay: 0.3,autoAlpha: 1});

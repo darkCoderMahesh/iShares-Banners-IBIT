@@ -72,6 +72,8 @@ function default_out(event) {
   gsap.to(["#cta"], .3, { scale: 1, ease:"power4.inOut" });
 }
 
+
+
 function rolloverUp(ev) {
   ev.preventDefault();
   //gsap.set("#up", { y: -5 });
